@@ -1,0 +1,369 @@
+/* ================================
+   GLOBAL
+================================ */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f5f7fb;
+    color: #1f2937;
+}
+
+button,
+input,
+select {
+    font-family: inherit;
+}
+
+a {
+    text-decoration: none;
+}
+
+
+/* ================================
+   NAVIGATION
+================================ */
+
+.navigation {
+    width: 100%;
+    background: #111827;
+    padding: 18px 40px;
+
+    display: flex;
+    align-items: center;
+    gap: 30px;
+
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
+}
+
+.navigation a {
+    color: #d1d5db;
+    font-size: 16px;
+    font-weight: 600;
+
+    padding: 9px 14px;
+    border-radius: 7px;
+
+    transition: 0.2s ease;
+}
+
+.navigation a:hover {
+    background: #374151;
+    color: white;
+}
+
+
+/* ================================
+   MAIN CONTAINER
+================================ */
+
+.container {
+    width: 90%;
+    max-width: 1100px;
+    margin: 40px auto;
+}
+
+
+/* ================================
+   PAGE CARD
+================================ */
+
+.page {
+    background: white;
+
+    padding: 35px;
+
+    margin-bottom: 30px;
+
+    border-radius: 16px;
+
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.07);
+}
+
+.page h1 {
+    margin-top: 0;
+    margin-bottom: 10px;
+
+    font-size: 32px;
+}
+
+.page h2 {
+    margin-top: 25px;
+    margin-bottom: 20px;
+
+    font-size: 22px;
+}
+
+
+/* ================================
+   LOGIN FORM
+================================ */
+
+.page form {
+    max-width: 450px;
+}
+
+.page form p {
+    margin-bottom: 7px;
+
+    font-weight: 600;
+}
+
+.page input {
+    width: 100%;
+
+    padding: 12px 14px;
+
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+
+    font-size: 15px;
+
+    outline: none;
+
+    transition: 0.2s ease;
+}
+
+.page input:focus {
+    border-color: #2563eb;
+
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+
+/* ================================
+   BUTTON
+================================ */
+
+.page button {
+    border: none;
+
+    padding: 12px 24px;
+
+    border-radius: 8px;
+
+    background: #2563eb;
+    color: white;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.page button:hover {
+    background: #1d4ed8;
+
+    transform: translateY(-1px);
+}
+
+
+/* ================================
+   TRAINER LIST
+================================ */
+
+.trainer-list {
+    display: grid;
+
+    grid-template-columns: repeat(
+        auto-fit,
+        minmax(250px, 1fr)
+    );
+
+    gap: 20px;
+}
+
+
+/* ================================
+   TRAINER CARD
+================================ */
+
+.trainer-card {
+    background: white;
+
+    padding: 24px;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 14px;
+
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
+
+    transition: 0.25s ease;
+}
+
+.trainer-card:hover {
+    transform: translateY(-4px);
+
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.trainer-card h3 {
+    margin-top: 0;
+
+    margin-bottom: 12px;
+
+    font-size: 20px;
+}
+
+.trainer-card p {
+    margin: 8px 0;
+
+    color: #4b5563;
+}
+
+
+/* ================================
+   AVAILABILITY
+================================ */
+
+.available {
+    display: inline-block;
+
+    padding: 6px 12px;
+
+    border-radius: 20px;
+
+    background: #dcfce7;
+
+    color: #15803d !important;
+
+    font-weight: bold;
+}
+
+.fully-booked {
+    display: inline-block;
+
+    padding: 6px 12px;
+
+    border-radius: 20px;
+
+    background: #fee2e2;
+
+    color: #dc2626 !important;
+
+    font-weight: bold;
+}
+
+
+/* ================================
+   HORIZONTAL LINE
+================================ */
+
+hr {
+    border: none;
+
+    border-top: 1px solid #e5e7eb;
+
+    margin: 30px 0;
+}
+
+
+/* ================================
+   MOBILE
+================================ */
+
+@media (max-width: 700px) {
+
+    .navigation {
+        padding: 15px 20px;
+
+        gap: 8px;
+
+        flex-wrap: wrap;
+    }
+
+    .navigation a {
+        font-size: 14px;
+
+        padding: 8px 10px;
+    }
+
+    .container {
+        width: 94%;
+
+        margin: 25px auto;
+    }
+
+    .page {
+        padding: 22px;
+    }
+
+    .page h1 {
+        font-size: 26px;
+    }
+
+    .trainer-list {
+        grid-template-columns: 1fr;
+    }
+}
+/* ================================
+   BOOKING FORM
+================================ */
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 7px;
+    font-weight: 600;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    max-width: 450px;
+
+    padding: 12px 14px;
+
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+
+    font-size: 15px;
+
+    background-color: white;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+
+    border-color: #2563eb;
+
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+
+/* ================================
+   BOOKING PREVIEW
+================================ */
+
+.booking-preview {
+    margin-top: 25px;
+
+    padding: 20px;
+
+    max-width: 450px;
+
+    background-color: #eff6ff;
+
+    border: 1px solid #bfdbfe;
+
+    border-radius: 10px;
+}
+
+.booking-preview h3 {
+    margin-top: 0;
+}
+
+.booking-preview p {
+    margin: 8px 0;
+}
