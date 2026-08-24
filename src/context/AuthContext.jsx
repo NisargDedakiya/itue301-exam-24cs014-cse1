@@ -2,21 +2,48 @@ import { createContext, useContext, useState } from "react";
 
 const AuthContext = createContext();
 
-function AuthProvider({ children }) {
-    const [member, setMember] = useState(null);
-    const [token, setToken] = useState(null);
-    const [role, setRole] = useState(null);
+export function AuthProvider({ children }) {
+    const [member, setMember] = useState(() => {
+        try {
+            const saved = localStorage.getItem("fitzone_member");
+            return saved ? JSON.parse(saved) : null;
+        } catch {
+            return null;
+        }
+    });
 
-    function login(memberData, userToken, userRole) {
+    const [token, setToken] = useState(() => {
+        return localStorage.getItem("fitzone_token") || null;
+    });
+
+    const [role, setRole] = useState(() => {
+        return localStorage.getItem("fitzone_role") || null;
+    });
+
+    function login(memberData, userToken, userRole = "member") {
         setMember(memberData);
         setToken(userToken);
         setRole(userRole);
+        try {
+            localStorage.setItem("fitzone_member", JSON.stringify(memberData));
+            localStorage.setItem("fitzone_token", userToken);
+            localStorage.setItem("fitzone_role", userRole);
+        } catch (e) {
+            console.error("Storage error:", e);
+        }
     }
 
     function logout() {
         setMember(null);
         setToken(null);
         setRole(null);
+        try {
+            localStorage.removeItem("fitzone_member");
+            localStorage.removeItem("fitzone_token");
+            localStorage.removeItem("fitzone_role");
+        } catch (e) {
+            console.error("Storage error:", e);
+        }
     }
 
     return (
@@ -34,8 +61,6 @@ function AuthProvider({ children }) {
     );
 }
 
-function useAuth() {
+export function useAuth() {
     return useContext(AuthContext);
 }
-
-export { AuthProvider, useAuth };

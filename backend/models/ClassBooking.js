@@ -17,24 +17,47 @@ const classBookingSchema = new mongoose.Schema(
         className: {
             type: String,
             required: [true, "Class name is required"],
-            minlength: [2, "Class name must contain at least 2 characters"]
+            trim: true,
+            minlength: [2, "Class name must contain at least 2 characters"],
+            maxlength: [80, "Class name cannot exceed 80 characters"]
         },
 
         date: {
             type: Date,
-            required: [true, "Date is required"]
+            required: [true, "Booking date is required"],
+            validate: {
+                validator: function (v) {
+                    if (!v) return false;
+                    const bookingDate = new Date(v);
+                    const today = new Date();
+                    today.setHours(0, 0, 0, 0);
+                    return bookingDate >= today;
+                },
+                message: "Booking date cannot be in the past"
+            }
         },
 
         timeSlot: {
             type: String,
-            required: [true, "Time slot is required"]
+            required: [true, "Time slot is required"],
+            trim: true,
+            enum: {
+                values: [
+                    "06:00 AM - 07:00 AM",
+                    "07:00 AM - 08:00 AM",
+                    "09:00 AM - 10:00 AM",
+                    "05:00 PM - 06:00 PM",
+                    "07:00 PM - 08:00 PM"
+                ],
+                message: "Invalid time slot selected"
+            }
         },
 
         status: {
             type: String,
             enum: {
                 values: ["booked", "attended", "cancelled"],
-                message: "Invalid booking status"
+                message: "Status must be one of: booked, attended, cancelled"
             },
             default: "booked"
         }
